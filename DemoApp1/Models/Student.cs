@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DemoApp1.Models
 {
-    public class User
+    public class Student
     {
         [Key]
         public Guid Id { get; set; }

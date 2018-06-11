@@ -6,14 +6,22 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using DemoApp1.Data;
 
 namespace DemoApp1
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env, IConfiguration configuration)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
+            //Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -21,6 +29,8 @@ namespace DemoApp1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<UserContext>(options => options.UseSqlServer(Configuration.GetConnectionString("UserConnection")));
+            services.AddDbContext<MasterContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MasterConnection")));
             services.AddMvc();
         }
 
