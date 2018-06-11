@@ -15,11 +15,11 @@ namespace DemoApp1.Data
             
 
         }
-        public DbSet<Student> Users { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Student>().ToTable("Student");
+           
         }
     }
 }

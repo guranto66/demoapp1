@@ -12,9 +12,9 @@ namespace DemoApp1.Controllers
 {
     public class StudentsController : Controller
     {
-        private readonly MasterContext _context;
+        private readonly UserContext _context;
 
-        public StudentsController(MasterContext context)
+        public StudentsController(UserContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace DemoApp1.Controllers
         // GET: Students
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Users.ToListAsync());
+            return View(await _context.Students.ToListAsync());
         }
 
         // GET: Students/Details/5
@@ -33,7 +33,7 @@ namespace DemoApp1.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Users
+            var student = await _context.Students
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (student == null)
             {
@@ -74,7 +74,7 @@ namespace DemoApp1.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Users.FindAsync(id);
+            var student = await _context.Students.FindAsync(id);
             if (student == null)
             {
                 return NotFound();
@@ -125,7 +125,7 @@ namespace DemoApp1.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Users
+            var student = await _context.Students
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (student == null)
             {
@@ -140,15 +140,15 @@ namespace DemoApp1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var student = await _context.Users.FindAsync(id);
-            _context.Users.Remove(student);
+            var student = await _context.Students.FindAsync(id);
+            _context.Students.Remove(student);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StudentExists(Guid id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Students.Any(e => e.Id == id);
         }
     }
 }
