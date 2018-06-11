@@ -14,6 +14,6 @@ namespace DemoApp1.Models
         [MaxLength(200)]
         public string Title { get; set; }
 
-        public int TotalHourse { get; set; }
+        public int TotalHours { get; set; }
     }
 }
