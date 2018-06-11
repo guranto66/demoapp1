@@ -12,6 +12,8 @@ namespace DemoApp1.Data
     {
         public MasterContext(DbContextOptions<MasterContext> options) : base(options)
         {
+            
+
         }
         public DbSet<Student> Users { get; set; }
 
