@@ -11,6 +11,7 @@ Demo App
 - Geo replication
   - DR 
   - Failover Groups
+  - Test failover
 - Sync to On-Prem
   - DR
 - Export to BACPAC
