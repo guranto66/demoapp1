@@ -18,3 +18,5 @@ Demo App
   - To Blob storage
   - To On-Prem (SqlPackage.exe /a:Export /tf:testExport.bacpac /scs:"Data Source=apptestserver.database.windows.net;Initial Catalog=MyDB;" /ua:True /tid:"apptest.onmicrosoft.com")
 
+
+test
